@@ -9,14 +9,14 @@ class Node {
 
 
 function printDownwards(root, k) {
-    if (root == null) {
+    if (root == null) return
+    if (k == 0) { console.log(root.data)
         return
     }
-    if (k == 0) {
-        return console.log(root.data)
-    }
+
     printDownwards(root.left, k - 1)
     printDownwards(root.right, k - 1)
+
 }
 
 
@@ -24,6 +24,7 @@ function printAtLevelK(root, target, k) {
     if (root == null) {
         return -1
     }
+
     if (root == target) {
         printDownwards(root, k)
         return 0
@@ -32,7 +33,6 @@ function printAtLevelK(root, target, k) {
     let lr = printAtLevelK(root.left, target, k)
 
     if (lr != -1) {
-
         if (lr + 1 == k) {
             console.log(root.data)
         } else {
@@ -64,5 +64,4 @@ root.right.right = new Node(6);
 root.left.right.left = new Node(7);
 
 
-console.log(printAtLevelK(root,root.left.right,1))
-
+console.log(printAtLevelK(root, root.left, 2))
